@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497dafd1b3de9f240873e759d1d8eea1, type: 3}
+  m_Name: Level3
+  m_EditorClassIdentifier: 
+  LevelWidth: 2
+  TotalRows: 4
+  UnitsPerRow: 4
+  SpaceBetweenUnits: 0.4
+  StartRowPosition: 2
