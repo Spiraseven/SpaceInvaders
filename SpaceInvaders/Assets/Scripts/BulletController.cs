@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Moves a bullet in a direction and destroys it after its lifetime
+ */
 public class BulletController : MonoBehaviour
 {
-    public Vector3 Direction;
-    public float Speed;
-    public float Lifetime = 1.5f;
+    [SerializeField] private Vector3 Direction;
+    [SerializeField] private float Speed;
+    [SerializeField] private float Lifetime = 1.5f;
 
     private Vector3 _position;
     private float _startTime;

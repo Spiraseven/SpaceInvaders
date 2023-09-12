@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497dafd1b3de9f240873e759d1d8eea1, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  LevelWidth: 2
+  LevelWidth: 2.4
   TotalRows: 4
   UnitsPerRow: 4
   SpaceBetweenUnits: 0.4

@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+ * The main game manager, controls the flow of each level and makes calls to update UI
+ */
 public class LevelManager : MonoBehaviour
 {
-    public int CurrentLevel = 0;
-    public int StartLives = 3;
-    public LevelData[] Levels;
-    public GameObject[] EnemyTypes;
-
-    public GameObject LeftLane;
-    public GameObject RightLane;
-    public Transform EndLane;
-    public Transform UnitHolder;
+    [SerializeField] private int CurrentLevel = 0;
+    [SerializeField] private int StartLives = 3;
+    [SerializeField] private LevelData[] Levels;
+    [SerializeField] private GameObject[] EnemyTypes;
+    
+    [SerializeField] private GameObject LeftLane;
+    [SerializeField] private GameObject RightLane;
+    [SerializeField] private Transform EndLane;
+    [SerializeField] private Transform UnitHolder;
 
     private bool _running = false;
     private int _score=0;
@@ -32,6 +35,12 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+    private void Start()
+    {
+        int score = PlayerPrefs.GetInt("HighScore", 0);
+        _highscore = score;
+        UIManager.Instance.SetHighScore(score);
     }
 
     public void SetupLevel()
@@ -66,10 +75,22 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.ShowPause(true);
+    }
+
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        UIManager.Instance.ShowPause(false);
+    }
+
     public void RestartGame()
     {
-        if(_running) return;
-
+        Time.timeScale = 1;
+        RemoveUnits();
         _running = true;
         _lives = 3;
         _score = 0;
@@ -82,6 +103,7 @@ public class LevelManager : MonoBehaviour
         CurrentLevel = 0;
         SetupLevel();
         MovementManager.Instance.Started = true;
+        ExtraEnemyManager.Instance.StartSpawning();
     }
 
     public void NextLevel()
@@ -140,9 +162,11 @@ public class LevelManager : MonoBehaviour
         {
             _highscore = _score;
             UIManager.Instance.SetHighScore(_highscore);
+            PlayerPrefs.SetInt("HighScore", _highscore);
         }
         UIManager.Instance.ShowRestart(true, endtext);
         _running = false;
+        ExtraEnemyManager.Instance.StopSpawning();
     }
 
     private void RemoveUnits()

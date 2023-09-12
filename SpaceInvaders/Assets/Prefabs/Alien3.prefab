@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8163988317833153356}
   - component: {fileID: 7306158953295808787}
   - component: {fileID: 7343570567979083740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Alien3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
     type: 3}
   FirePosition: {fileID: 8630098063288204486}
   Bullet: {fileID: 3610819715072445103, guid: fb31c3bd351ea87479400dffb1c49c0f, type: 3}
-  FireRate: 1
+  FireRate: 1.5
   ShouldFire: 0
 --- !u!54 &7343570567979083740
 Rigidbody:
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8630098063288204486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 1302134164682983168}
   - component: {fileID: 4234847391577439818}
   - component: {fileID: 855834986997439198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

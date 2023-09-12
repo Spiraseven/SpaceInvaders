@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/*
+ * Takes in GUI components and updates UI elements
+ */
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI HighScore1;

@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Controls an individual invaders shooting and reaction to triggers 
+ */
 public class UnitController : MonoBehaviour
 {
-    public GameObject Explosion;
-    public Transform FirePosition;
-    public GameObject Bullet;
-    public float FireRate = 1f;
-    public bool ShouldFire = false;
+    [SerializeField] private GameObject Explosion;
+    [SerializeField] private Transform FirePosition;
+    [SerializeField] private GameObject Bullet;
+    [SerializeField] private float FireRate = 1f;
+    [SerializeField] private bool ShouldFire = false;
 
     private float _lastShotTime = 0;
 
@@ -49,6 +50,7 @@ public class UnitController : MonoBehaviour
             MovementManager.Instance.IncreaseSpeed();
             Destroy(other.gameObject);
             Destroy(this.gameObject);
+            TriggerNextUnitToFire();
             LevelManager.Instance.IncreaseScore();
             LevelManager.Instance.LoseUnit();
         }
@@ -56,8 +58,21 @@ public class UnitController : MonoBehaviour
         {
             Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            TriggerNextUnitToFire();
             LevelManager.Instance.LoseLife();
             LevelManager.Instance.LoseUnit();
+        }
+    }
+
+    private void TriggerNextUnitToFire()
+    {
+        if (ShouldFire)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.forward, out hit, Mathf.Infinity, LayerMask.GetMask("Enemy")))
+            {
+                hit.transform.GetComponent<UnitController>().StartFiring();
+            }
         }
     }
 }

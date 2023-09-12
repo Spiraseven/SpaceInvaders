@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+ * Manages how the invaders move in a group
+ */
 public class MovementManager : MonoBehaviour
 {
-    public Transform UnitHolder;
-    public bool Started = false;
-    public float Side = 1;
-    public float InitialSpeed = 1.0f;
-    public float SpeedIncrement = 1.0f;
+    [SerializeField] private Transform UnitHolder;
+    [SerializeField] private float InitialSpeed = 1.0f;
+    [SerializeField] private float SpeedIncrement = 1.0f;
+
     public LevelData Data;
+    public float Side = 1;
+    public bool Started = false;
 
     private float _speed = 1.0f;
     private bool _movingForward = false;
